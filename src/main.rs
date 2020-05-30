@@ -4,6 +4,8 @@ extern crate clipboard;
 use clipboard::ClipboardProvider;
 use clipboard::ClipboardContext;
 
+mod config;
+
 fn clear_clipboard() {
     let mut ctx: ClipboardContext = ClipboardProvider::new().unwrap();
     ctx.set_contents("".to_owned()).unwrap();
@@ -11,10 +13,12 @@ fn clear_clipboard() {
 }
 
 fn main() {
+    let cfg = config::config_get();
+    println!("{:#?}", cfg);
     let mut planner = periodic::Planner::new();
     planner.add(
         clear_clipboard,
-        periodic::Every::new(Duration::from_secs(3)),
+        periodic::Every::new(Duration::from_secs(15)),
     );
     planner.start();
 
