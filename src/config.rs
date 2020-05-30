@@ -2,19 +2,20 @@ extern crate confy;
 use serde::Serialize;
 use serde::Deserialize;
 
-#[derive(Serialize, Deserialize)]
-struct AppConfig {
-    interval: u64
+#[derive(Debug, Serialize, Deserialize)]
+pub struct ConfyConfig {
+    pub interval: u64
 }
 
-/// `AppConfig` implements `Default`
-impl ::std::default::Default for AppConfig {
-    fn default() -> Self { AppConfig {
-        interval: 15
-    } }
+impl Default for ConfyConfig {
+    fn default() -> Self {
+        ConfyConfig {
+            interval: 15
+        }
+    }
 }
 
-pub fn config_get() -> Result<(), confy::ConfyError> {
-    let cfg = confy::load("clipboard_vanisher");
-    cfg
+pub fn config_get() -> Result<ConfyConfig, confy::ConfyError> {
+    let cfg: ConfyConfig = confy::load("clipboard_vanisher")?;
+    Ok(cfg)
 }

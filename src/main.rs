@@ -13,16 +13,17 @@ fn clear_clipboard() {
 }
 
 fn main() {
-    let cfg = config::config_get();
-    println!("{:#?}", cfg);
+    let cfg = config::config_get().ok().unwrap();
+    // println!("{:#?}", cfg.ok().unwrap());
+
     let mut planner = periodic::Planner::new();
     planner.add(
         clear_clipboard,
-        periodic::Every::new(Duration::from_secs(15)),
+        periodic::Every::new(Duration::from_secs(cfg.interval)),
     );
     planner.start();
 
-    let mut done = false; // mut done: bool
+    let done = false; // mut done: bool
     while !done {
         thread::sleep(::std::time::Duration::new(1, 0));
     }
