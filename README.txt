@@ -12,7 +12,6 @@ cargo build --target x86_64-pc-windows-msvc
 
 Roadmap
 ===
-- Ignore anything other than text
 - Clipboard history and shortcut for recovering the last clipboard content
 - Encrypting clipboard history and pin code for accessing history
 - Use OS built-in authentication system for encrypting and decrypting history

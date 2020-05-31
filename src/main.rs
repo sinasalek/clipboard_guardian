@@ -1,14 +1,17 @@
 use std::time::Duration;
 use std::thread;
-extern crate clipboard;
-use clipboard::ClipboardProvider;
-use clipboard::ClipboardContext;
+extern crate copypasta;
+use copypasta::{ClipboardContext, ClipboardProvider};
 
 mod config;
 
 fn clear_clipboard() {
-    let mut ctx: ClipboardContext = ClipboardProvider::new().unwrap();
-    ctx.set_contents("".to_owned()).unwrap();
+    let mut ctx = ClipboardContext::new().unwrap();
+    let content = ctx.get_contents();
+    if content.is_ok() {
+        println!("{:?}", content);
+        //ctx.set_contents("".to_owned()).unwrap();
+    }
     println!("every three seconds");
 }
 
