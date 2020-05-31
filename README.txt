@@ -9,12 +9,13 @@ Note that this is developed on Windows 10
 Build
 ===
 cargo build --target x86_64-pc-windows-msvc
-cargo build --target x86_64-unknown-linux-gnu
 
 Roadmap
 ===
+- Ignore anything other than text
 - Clipboard history and shortcut for recovering the last clipboard content
 - Encrypting clipboard history and pin code for accessing history
+- Use OS built-in authentication system for encrypting and decrypting history
 - Full Linux support
 - Cross-compile using https://github.com/japaric/trust
 - GUI
