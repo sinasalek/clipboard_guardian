@@ -1,4 +1,5 @@
-Clears clipboard on specified intervals for protection against spywares
+Clears clipboard text content after x second (default is 15sec) to protect sensitive
+contents like password from praying eyes
 
 Requirements
 ===

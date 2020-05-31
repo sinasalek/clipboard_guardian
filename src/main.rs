@@ -1,35 +1,33 @@
-use std::time::Duration;
+use hotkey;
 use std::thread;
-extern crate copypasta;
-use copypasta::{ClipboardContext, ClipboardProvider};
+use std::sync::Arc;
 
 mod config;
-
-fn clear_clipboard() {
-    let mut ctx = ClipboardContext::new().unwrap();
-    let content = ctx.get_contents();
-    if content.is_ok() {
-        println!("{:?}", content);
-        //ctx.set_contents("".to_owned()).unwrap();
-    }
-    println!("every three seconds");
-}
+mod clipboard;
 
 fn main() {
-    let cfg = config::config_get().ok().unwrap();
+    // Load the config
+    let cfg = Arc::new(config::config_get().ok().unwrap());
+    let thread_cfg = cfg.clone();
     // println!("{:#?}", cfg.ok().unwrap());
 
-    let mut planner = periodic::Planner::new();
-    planner.add(
-        clear_clipboard,
-        periodic::Every::new(Duration::from_secs(cfg.interval)),
-    );
-    planner.start();
+    // Setup a separate thread to monitor clipboard changes
+    thread::spawn(move || {
+        clipboard::clipboard_change_monitor(thread_cfg.interval);
+        //let done = false; // mut done: bool
+        //while !done {
+        //thread::sleep(::std::time::Duration::new(1, 0));
+        //}
+    });
 
-    let done = false; // mut done: bool
-    while !done {
-        thread::sleep(::std::time::Duration::new(1, 0));
-    }
+    // Setup hotkeys for certain actions
+    let mut hk = hotkey::Listener::new();
+    hk.register_hotkey(
+        hotkey::modifiers::CONTROL | hotkey::modifiers::SHIFT,
+        'J' as u32,
+        || println!("Ctrl-Shift-J pressed!"),
+    )
+        .unwrap();
 
-    drop(planner)
+    hk.listen();
 }
