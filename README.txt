@@ -11,11 +11,12 @@ Build
 ===
 cargo build --target x86_64-pc-windows-msvc
 
-Roadmap
+Todo
 ===
 - Clipboard history and shortcut for recovering the last clipboard content
 - Encrypting clipboard history and pin code for accessing history
 - Use OS built-in authentication system for encrypting and decrypting history
 - Full Linux support
-- Cross-compile using https://github.com/japaric/trust
 - GUI
+- Cross-compile using https://github.com/japaric/trust
+- Write automated tests
