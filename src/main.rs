@@ -4,6 +4,7 @@ use std::sync::Arc;
 
 mod config;
 mod clipboard;
+mod gui;
 
 fn main() {
     // Load the config
@@ -20,7 +21,12 @@ fn main() {
         //}
     });
 
-    // Setup hotkeys for certain actions
+    // Setup a separate thread to monitor clipboard changes
+    thread::spawn(|| {
+        gui::show_settings_ui()
+    });
+
+    // Setup hot-keys for certain actions
     let mut hk = hotkey::Listener::new();
     hk.register_hotkey(
         hotkey::modifiers::CONTROL | hotkey::modifiers::SHIFT,

@@ -1,5 +1,5 @@
 [package]
-name = "clipboard_vanisher"
+name = "clipboard_guardian"
 version = "0.1.0"
 authors = ["sinasalek <sinasalek@gmail.com>"]
 edition = "2018"
@@ -14,3 +14,5 @@ confy = "0.4.0"
 hotkey = "0.3.1"
 clipboard-master = "3.0.0"
 serde = { version = "1.0", features = ["derive"] }
+iui = "0.3"
+exitcode = "1.1.2"
