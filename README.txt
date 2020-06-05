@@ -6,8 +6,8 @@ Features
 ===
 - Clears clipboard texts (ignores, very big texts, files, etc) after 8 seconds and keeps a history
 - Ability to recover previously cleared clipboard texts
-- Clipboard
-- Fully configurable through the UI
+- UI for settings
+- Fully configurable through the UI and tray icon support in Windows
 
 Build Requirements
 ===
