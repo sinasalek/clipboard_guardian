@@ -16,3 +16,4 @@ clipboard-master = "3.0.0"
 serde = { version = "1.0", features = ["derive"] }
 iui = "0.3"
 exitcode = "1.1.2"
+crossbeam = "0.7.3"
