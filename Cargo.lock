@@ -244,11 +244,10 @@ dependencies = [
 
 [[package]]
 name = "dirs-sys"
-version = "0.3.4"
+version = "0.3.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "afa0b23de8fd801745c471deffa6e12d248f962c9fd4b4c33787b055599bde7b"
+checksum = "8e93d7f5705de3e49895a2b5e0b8855a1c27f080192ae9c32a6432d50741a57a"
 dependencies = [
- "cfg-if",
  "libc",
  "redox_users",
  "winapi",
@@ -484,18 +483,18 @@ checksum = "05da548ad6865900e60eaba7f589cc0783590a92e940c26953ff81ddbab2d677"
 
 [[package]]
 name = "proc-macro2"
-version = "1.0.17"
+version = "1.0.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1502d12e458c49a4c9cbff560d0fe0060c252bc29799ed94ca2ed4bb665a0101"
+checksum = "beae6331a816b1f65d04c45b078fd8e6c93e8071771f41b8163255bbd8d7c8fa"
 dependencies = [
  "unicode-xid",
 ]
 
 [[package]]
 name = "quote"
-version = "1.0.6"
+version = "1.0.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "54a21852a652ad6f610c9510194f398ff6f8692e334fd1145fed931f7fbe44ea"
+checksum = "aa563d17ecb180e500da1cfd2b028310ac758de548efdd203e18f283af693f37"
 dependencies = [
  "proc-macro2",
 ]
@@ -603,9 +602,9 @@ dependencies = [
 
 [[package]]
 name = "syn"
-version = "1.0.29"
+version = "1.0.30"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bb37da98a55b1d08529362d9cbb863be17556873df2585904ab9d2bc951291d0"
+checksum = "93a56fabc59dce20fe48b6c832cc249c713e7ed88fa28b0ee0a3bfcaae5fe4e2"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -614,9 +613,9 @@ dependencies = [
 
 [[package]]
 name = "synstructure"
-version = "0.12.3"
+version = "0.12.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "67656ea1dc1b41b1451851562ea232ec2e5a80242139f7e679ceccfb5d61f545"
+checksum = "b834f2d66f734cb897113e34aaff2f1ab4719ca946f9a7358dba8f8064148701"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -803,9 +802,9 @@ dependencies = [
 
 [[package]]
 name = "xcursor"
-version = "0.3.1"
+version = "0.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "56edec90b342d0f46d1189f3fd4a3374954636f3d76c861855b675efc7ef1435"
+checksum = "d3a481cfdefd35e1c50073ae33a8000d695c98039544659f5dc5dd71311b0d01"
 dependencies = [
  "nom",
 ]

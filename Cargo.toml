@@ -1,19 +1,28 @@
 [package]
 name = "clipboard_guardian"
+description = "Clears clipboard text content after x seconds (default is 15sec) to protect sensitive contents like passwords from praying eyes and keeps an encrypted history of the last few ones in case the user wanted to recover them."
 version = "0.1.0"
 authors = ["sinasalek <sinasalek@gmail.com>"]
 edition = "2018"
+documentation = "https://github.com/sinasalek/clipboard_guardian/blob/master/README.md"
+readme = "README.md"
+homepage = "https://github.com/sinasalek/clipboard_guardian"
+license = "MIT"
+license-file = "LICENSE.txt"
+keywords = ["clipboard", "security"]
+categories = ["security-utilities"]
+publish = false
 
 [target.x86_64-pc-windows-msvc]
 rustflags = ["-C", "target-feature=+crt-static"]
 
 [dependencies]
-periodic = "0.1.1"
-copypasta = "0.7.0"
-confy = "0.4.0"
-hotkey = "0.3.1"
-clipboard-master = "3.0.0"
-serde = { version = "1.0", features = ["derive"] }
-iui = "0.3"
-exitcode = "1.1.2"
-crossbeam = "0.7.3"
+periodic = "~0.1.1"
+copypasta = "~0.7.0"
+confy = "~0.4.0"
+hotkey = "~0.3.1"
+clipboard-master = "~3.0.0"
+serde = { version = "~1.0", features = ["derive"] }
+iui = "~0.3"
+exitcode = "~1.1.2"
+crossbeam = "~0.7.3"
