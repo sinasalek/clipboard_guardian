@@ -31,7 +31,7 @@ fn clipboard_clear(clipboard_sender: CallbackType) {
     if content.is_ok() {
         println!("{:?}", content);
         println!("cleared");
-        //clipboard_sender(content.unwrap());
+        clipboard_sender(&content.unwrap());
         //ctx.set_contents("".to_owned()).unwrap();
     }
 }
@@ -40,7 +40,7 @@ pub fn clipboard_clear_timer(callback: CallbackType) {
     let mut planner = periodic::Planner::new();
     //Box::new(move || clipboard_clear(callback)),
     planner.add(
-        move || println!("cleared"),
+        move || clipboard_clear(callback.clone()),
         periodic::After::new(Duration::from_secs(5)),
     );
     planner.start();
