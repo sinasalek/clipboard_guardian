@@ -7,11 +7,11 @@ use std::ops::Fn;
 use std::sync::{Arc};
 use super::clipboard_holder::{CallbackType};
 
-struct Handler<'a> {
-    clipboard_sender: CallbackType<'a>
+struct Handler {
+    clipboard_sender: CallbackType
 }
 
-impl ClipboardHandler for Handler<'_> {
+impl ClipboardHandler for Handler {
     fn on_clipboard_change(&mut self) -> CallbackResult {
         println!("Clipboard change happened!");
         let clipboard_sender = self.clipboard_sender;

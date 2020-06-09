@@ -4,7 +4,8 @@ use std::sync::{Arc};
 
 pub type ClipboardSenderType = Sender<String>;
 
-pub type CallbackType<'a> = Arc<dyn Fn(&String) + Send + Sync+ 'a>;
+pub type CallbackType = Arc<dyn Fn(&String) + Send + Sync>;
+//pub type CallbackType = impl Fn(String);
 
 pub struct ClipboardHolder {
     history: Vec<String>,
@@ -41,8 +42,21 @@ impl ClipboardHolder {
     pub fn history_get_total(&mut self) {
 
     }
+}
 
-    pub fn sender_callback_create(&self) -> CallbackType<'_> {
-        Arc::new(| text: &String | { self.safe_history_add(Box::new(text)); })
+pub struct ClipboardHolderContainer {
+    clipboard_holder: Arc<ClipboardHolder>
+}
+
+impl ClipboardHolderContainer {
+    pub fn new() -> Self {
+        ClipboardHolderContainer {
+            clipboard_holder: Arc::new(ClipboardHolder::new())
+        }
+    }
+
+    pub fn sender_callback_create(&self) -> CallbackType {
+        let h = self.clipboard_holder.clone();
+        Arc::new(| text: &String | { h.safe_history_add(Box::new(text)); })
     }
 }
