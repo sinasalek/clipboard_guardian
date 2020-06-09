@@ -26,7 +26,7 @@ impl ClipboardHolder {
         }
     }
 
-    pub fn safe_history_add(&mut self, content: Box<&String>) {
+    pub fn safe_history_add(&self, content: Box<&String>) {
         self.history_sender.send(content.to_string());
     }
 
@@ -43,6 +43,6 @@ impl ClipboardHolder {
     }
 
     pub fn sender_callback_create(&self) -> CallbackType<'_> {
-        Arc::new(move | text: &String | { self.safe_history_add(Box::new(text)); })
+        Arc::new(| text: &String | { self.safe_history_add(Box::new(text)); })
     }
 }

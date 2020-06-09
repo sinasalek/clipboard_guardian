@@ -11,7 +11,7 @@ struct Handler<'a> {
     clipboard_sender: CallbackType<'a>
 }
 
-impl ClipboardHandler for Handler {
+impl ClipboardHandler for Handler<'_> {
     fn on_clipboard_change(&mut self) -> CallbackResult {
         println!("Clipboard change happened!");
         let clipboard_sender = self.clipboard_sender;

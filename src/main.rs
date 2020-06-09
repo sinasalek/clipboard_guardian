@@ -14,17 +14,18 @@ fn main() {
     // Load the config
     let cfg = Arc::new(config::config_get().ok().unwrap());
     let thread_cfg = cfg.clone();
+    let mut handles = Vec::new();
     // println!("{:#?}", cfg.ok().unwrap());
 
     // Setup a separate thread to monitor clipboard changes
-    thread::spawn(move || {
+    handles.push(thread::spawn(move || {
         clipboard::clipboard_change_monitor(thread_cfg.interval, callback.clone());
-    });
+    }));
 
     // Setup a separate thread to monitor clipboard changes
-    thread::spawn(|| {
+    handles.push(thread::spawn(|| {
         gui::show_settings_ui()
-    });
+    }));
 
     // Setup hot-keys for certain actions
     let mut hk = hotkey::Listener::new();
@@ -36,4 +37,9 @@ fn main() {
         .unwrap();
 
     hk.listen();
+
+    // Wait for other threads to finish.
+    for handle in handles {
+        handle.join().unwrap();
+    }
 }
