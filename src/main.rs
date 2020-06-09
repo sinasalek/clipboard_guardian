@@ -1,8 +1,8 @@
 //#![windows_subsystem = "windows"]
-
 use hotkey;
 use std::thread;
 use std::sync::{Arc};
+
 mod config;
 mod clipboard;
 mod clipboard_holder;
@@ -10,8 +10,7 @@ mod gui;
 
 fn main() {
     let clipboard_holder = clipboard_holder::ClipboardHolder::new();
-    let clipboard_sender = clipboard_holder.history_sender.clone();
-
+    let callback = clipboard_holder.sender_callback_create();
     // Load the config
     let cfg = Arc::new(config::config_get().ok().unwrap());
     let thread_cfg = cfg.clone();
@@ -19,11 +18,7 @@ fn main() {
 
     // Setup a separate thread to monitor clipboard changes
     thread::spawn(move || {
-        clipboard::clipboard_change_monitor(thread_cfg.interval, move | c: String | clipboard_sender.send(c));
-        //let done = false; // mut done: bool
-        //while !done {
-        //thread::sleep(::std::time::Duration::new(1, 0));
-        //}
+        clipboard::clipboard_change_monitor(thread_cfg.interval, callback.clone());
     });
 
     // Setup a separate thread to monitor clipboard changes
