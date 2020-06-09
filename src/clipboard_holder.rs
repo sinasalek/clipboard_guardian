@@ -57,6 +57,6 @@ impl ClipboardHolderContainer {
 
     pub fn sender_callback_create(&self) -> CallbackType {
         let h = self.clipboard_holder.clone();
-        Arc::new(| text: &String | { h.safe_history_add(Box::new(text)); })
+        Arc::new(move | text: &String | { h.safe_history_add(Box::new(text)); })
     }
 }

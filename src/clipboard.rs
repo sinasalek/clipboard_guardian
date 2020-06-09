@@ -14,7 +14,7 @@ struct Handler {
 impl ClipboardHandler for Handler {
     fn on_clipboard_change(&mut self) -> CallbackResult {
         println!("Clipboard change happened!");
-        let clipboard_sender = self.clipboard_sender;
+        let clipboard_sender = self.clipboard_sender.clone();
         clipboard_clear_timer(clipboard_sender);
         CallbackResult::Next
     }
