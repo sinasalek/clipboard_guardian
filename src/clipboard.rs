@@ -3,8 +3,6 @@ use copypasta::{ClipboardContext, ClipboardProvider};
 use clipboard_master::{Master, ClipboardHandler, CallbackResult};
 use std::time::Duration;
 use std::io;
-use std::ops::Fn;
-use std::sync::{Arc};
 use super::clipboard_holder::{CallbackType};
 
 struct Handler {

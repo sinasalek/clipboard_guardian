@@ -1,12 +1,15 @@
 //#![windows_subsystem = "windows"]
+//#![allow(unused_variables)]
 use hotkey;
-use std::thread;
+use std::{thread};
 use std::sync::{Arc};
 
 mod config;
 mod clipboard;
 mod clipboard_holder;
 mod gui;
+mod system_tray;
+mod helpers;
 
 fn main() {
     let clipboard_holder: clipboard_holder::ClipboardHolderContainer = clipboard_holder::ClipboardHolderContainer::new();
@@ -25,6 +28,13 @@ fn main() {
     // Setup a separate thread to monitor clipboard changes
     handles.push(thread::spawn(|| {
         gui::show_settings_ui()
+    }));
+
+    // system tray for the app
+    handles.push(thread::spawn(|| {
+        let p1 = helpers::get_target_dir();
+        let app_path = helpers::get_top_dir(&p1);
+        system_tray::start(app_path.to_str().unwrap());
     }));
 
     // Setup hot-keys for certain actions
