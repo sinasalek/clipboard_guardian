@@ -1,4 +1,5 @@
 [package]
+#name = "$name"
 name = "clipboard_guardian"
 description = "Clears clipboard text content after x seconds (default is 15sec) to protect sensitive contents like passwords from praying eyes and keeps an encrypted history of the last few ones in case the user wanted to recover them."
 version = "0.1.0"
@@ -16,6 +17,9 @@ publish = false
 [target.x86_64-pc-windows-msvc]
 rustflags = ["-C", "target-feature=+crt-static"]
 
+[package.metadata.flutter]
+identifier = "com.example.$name" # This is only used on mac
+
 [dependencies]
 periodic = "~0.1.1"
 copypasta = "~0.7.0"
@@ -26,3 +30,10 @@ serde = { version = "~1.0", features = ["derive"] }
 iui = "~0.3"
 exitcode = "~1.1.2"
 crossbeam = "~0.7.3"
+systray = "~0.4.0"
+
+[target.'cfg(target_os="macos")'.dependencies]
+core-foundation = "~0.6.3"
+
+[target.'cfg(target_os="windows")'.build-dependencies]
+winres = "~0.1.9"
